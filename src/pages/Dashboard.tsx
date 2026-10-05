@@ -78,7 +78,7 @@ function Dashboard() {
             <div className="xl:col-span-2">
                 <RevenueChart />
             </div>
-            
+
             <RecentActivity />
         </div>
     </div>
