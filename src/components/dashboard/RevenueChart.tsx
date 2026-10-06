@@ -25,10 +25,10 @@ const revenueData = [
 
 function RevenueChart() {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6">
-      <div className="mb-6 flex items-start justify-between">
+    <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 sm:p-6">
+      <div className="mb-5 flex flex-col gap-3 sm:mb-6 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-slate-900">
+          <h2 className="text-base font-semibold text-slate-900 sm:text-lg">
             Revenue Overview
           </h2>
 
@@ -37,7 +37,7 @@ function RevenueChart() {
           </p>
         </div>
 
-        <div className="text-right">
+        <div className="sm:text-right">
           <p className="text-xl font-bold text-slate-900">
             $48,295
           </p>
@@ -48,14 +48,17 @@ function RevenueChart() {
         </div>
       </div>
 
-      <div className="h-80 w-full">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="h-64 w-full min-w-0 sm:h-80">
+        <ResponsiveContainer
+          width="100%"
+          height="100%"
+        >
           <AreaChart
             data={revenueData}
             margin={{
               top: 10,
-              right: 10,
-              left: -15,
+              right: 5,
+              left: -25,
               bottom: 0,
             }}
           >
@@ -72,6 +75,7 @@ function RevenueChart() {
                   stopColor="#2563eb"
                   stopOpacity={0.25}
                 />
+
                 <stop
                   offset="95%"
                   stopColor="#2563eb"
@@ -90,26 +94,40 @@ function RevenueChart() {
               dataKey="month"
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#94a3b8', fontSize: 12 }}
-              dy={10}
+              interval="preserveStartEnd"
+              minTickGap={15}
+              tick={{
+                fill: '#94a3b8',
+                fontSize: 11,
+              }}
             />
 
             <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#94a3b8', fontSize: 12 }}
-              tickFormatter={(value) => `$${value / 1000}k`}
+              width={55}
+              tick={{
+                fill: '#94a3b8',
+                fontSize: 11,
+              }}
+              tickFormatter={(value) =>
+                `$${value / 1000}k`
+              }
             />
 
             <Tooltip
               formatter={(value) => [
-                `$${Number(value).toLocaleString()}`,
+                `$${Number(
+                  value,
+                ).toLocaleString()}`,
                 'Revenue',
               ]}
               contentStyle={{
                 borderRadius: '10px',
-                border: '1px solid #e2e8f0',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                border:
+                  '1px solid #e2e8f0',
+                boxShadow:
+                  '0 4px 12px rgba(0,0,0,0.08)',
               }}
             />
 

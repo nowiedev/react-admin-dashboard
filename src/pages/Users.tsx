@@ -367,7 +367,7 @@ function Users() {
   }
 
   return (
-    <div>
+    <div className="min-w-0">
       {/* PAGE HEADER */}
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -384,7 +384,7 @@ function Users() {
         <button
           type="button"
           onClick={() => setIsAddModalOpen(true)}
-          className="flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 sm:w-auto"
         >
           <Plus size={18} />
 
@@ -397,7 +397,7 @@ function Users() {
       <div className="mt-8 overflow-visible rounded-xl border border-slate-200 bg-white">
         {/* FILTERS */}
 
-        <div className="flex flex-col gap-4 border-b border-slate-200 p-5 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-3 p-4 sm:p-5 lg:flex-row lg:items-center lg:justify-between">
           <div className="relative w-full lg:max-w-sm">
             <Search
               size={18}
@@ -448,7 +448,8 @@ function Users() {
 
         {/* TABLE */}
 
-        <div className="overflow-x-auto overflow-y-visible">
+        {/* <div className="overflow-x-auto overflow-y-visible"> */}
+        <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-slate-50">
               <tr>
@@ -852,8 +853,8 @@ function Users() {
       {/* ============================= */}
 
       {editingUser && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4">
-          <div className="w-full max-w-lg rounded-2xl bg-white shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4">
+          <div className="w-full max-w-lg rounded-xl bg-white p-5 shadow-xl sm:p-6">
             <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
               <div>
                 <h2 className="text-lg font-semibold text-slate-900">

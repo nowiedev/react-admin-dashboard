@@ -42,11 +42,10 @@ const stats = [
 
 function Dashboard() {
   return (
-    <div>
-      {/* Page heading */}
+    <div className="min-w-0">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">
+        <div className="min-w-0">
+          <h1 className="text-xl font-bold text-slate-900 sm:text-2xl">
             Dashboard
           </h1>
 
@@ -55,7 +54,7 @@ function Dashboard() {
           </p>
         </div>
 
-        <select className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 outline-none focus:border-blue-500">
+        <select className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-600 outline-none focus:border-blue-500 sm:w-auto">
           <option>Last 30 days</option>
           <option>Last 7 days</option>
           <option>Last 90 days</option>
@@ -63,8 +62,7 @@ function Dashboard() {
         </select>
       </div>
 
-      {/* Statistics */}
-      <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
         {stats.map((stat) => (
           <StatCard
             key={stat.title}
@@ -73,14 +71,15 @@ function Dashboard() {
         ))}
       </div>
 
-      {/* Analytics */}
-        <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-3">
-            <div className="xl:col-span-2">
-                <RevenueChart />
-            </div>
-
-            <RecentActivity />
+      <div className="mt-6 grid min-w-0 grid-cols-1 gap-6 xl:grid-cols-3">
+        <div className="min-w-0 xl:col-span-2">
+          <RevenueChart />
         </div>
+
+        <div className="min-w-0">
+          <RecentActivity />
+        </div>
+      </div>
     </div>
   )
 }

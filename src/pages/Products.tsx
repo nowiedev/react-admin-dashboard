@@ -465,7 +465,7 @@ function Products() {
   }
 
   return (
-    <div>
+    <div className="min-w-0">
       {/* PAGE HEADER */}
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -495,7 +495,7 @@ function Products() {
 
       {/* SUMMARY CARDS */}
 
-      <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
         <div className="rounded-xl border border-slate-200 bg-white p-5">
           <div className="flex items-start justify-between">
             <div>

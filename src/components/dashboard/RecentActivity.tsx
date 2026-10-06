@@ -38,7 +38,7 @@ const activities = [
 
 function RecentActivity() {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6">
+    <div className="rounded-xl border border-slate-200 bg-white p-4 sm:p-6">
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-slate-900">
           Recent Activity

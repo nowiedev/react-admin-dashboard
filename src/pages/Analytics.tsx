@@ -149,7 +149,7 @@ function formatCurrency(value: number) {
 
 function Analytics() {
   return (
-    <div>
+    <div className="min-w-0">
       {/* HEADER */}
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -173,7 +173,7 @@ function Analytics() {
 
       {/* KPI CARDS */}
 
-      <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
         {kpis.map((kpi) => {
           const Icon = kpi.icon
           const positive = kpi.change >= 0
@@ -227,7 +227,7 @@ function Analytics() {
 
       {/* REVENUE CHART */}
 
-      <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
+      <div className="mt-6 min-w-0 rounded-xl border border-slate-200 bg-white p-4 sm:p-6">
         <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">
@@ -250,7 +250,7 @@ function Analytics() {
           </div>
         </div>
 
-        <div className="h-80 w-full">
+        <div className="h-64 w-full min-w-0 sm:h-80">
           <ResponsiveContainer
             width="100%"
             height="100%"
@@ -340,10 +340,10 @@ function Analytics() {
 
       {/* SECOND ROW */}
 
-      <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
+      <div className="mt-6 grid min-w-0 grid-cols-1 gap-6 xl:grid-cols-2">
         {/* CATEGORY SALES */}
 
-        <div className="rounded-xl border border-slate-200 bg-white p-6">
+        <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 sm:p-6">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">
               Sales by Category
@@ -354,7 +354,7 @@ function Analytics() {
             </p>
           </div>
 
-          <div className="mt-6 h-72">
+          <div className="mt-6 h-64 min-w-0 sm:h-72">
             <ResponsiveContainer
               width="100%"
               height="100%"
@@ -409,7 +409,7 @@ function Analytics() {
 
         {/* ORDER STATUS */}
 
-        <div className="rounded-xl border border-slate-200 bg-white p-6">
+        <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 sm:p-6">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">
               Order Status

@@ -1,4 +1,10 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { useState } from 'react'
+
+import {
+  Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom'
 
 import Sidebar from './components/layout/Sidebar'
 import Header from './components/layout/Header'
@@ -11,18 +17,33 @@ import Reports from './pages/Reports'
 import Settings from './pages/Settings'
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] =
+    useState(false)
+
   return (
-    <div className="flex min-h-screen bg-slate-50">
-      <Sidebar />
+    <div className="min-h-screen bg-slate-50">
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
 
-      <div className="flex min-w-0 flex-1 flex-col">
-        <Header />
+      <div className="min-h-screen lg:pl-64">
+        <Header
+          onMenuClick={() =>
+            setSidebarOpen(true)
+          }
+        />
 
-        <main className="flex-1 p-8">
+        <main className="p-4 sm:p-6 lg:p-8">
           <Routes>
             <Route
               path="/"
-              element={<Navigate to="/dashboard" replace />}
+              element={
+                <Navigate
+                  to="/dashboard"
+                  replace
+                />
+              }
             />
 
             <Route
@@ -53,6 +74,16 @@ function App() {
             <Route
               path="/settings"
               element={<Settings />}
+            />
+
+            <Route
+              path="*"
+              element={
+                <Navigate
+                  to="/dashboard"
+                  replace
+                />
+              }
             />
           </Routes>
         </main>
