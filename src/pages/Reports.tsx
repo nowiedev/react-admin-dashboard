@@ -329,7 +329,7 @@ function Reports() {
   }
 
   return (
-    <div>
+    <div className="min-w-0">
       {/* SCREEN CONTENT */}
 
       <div className="reports-screen">
@@ -347,11 +347,11 @@ function Reports() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="grid grid-cols-1 gap-3 sm:flex sm:flex-row">
             <button
               type="button"
               onClick={handlePrint}
-              className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
+              className="flex w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 sm:w-auto"
             >
               <Printer size={18} />
               Print
@@ -360,7 +360,7 @@ function Reports() {
             <button
               type="button"
               onClick={handleExportCSV}
-              className="flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 sm:w-auto"
             >
               <Download size={18} />
               Export CSV
@@ -370,7 +370,7 @@ function Reports() {
 
         {/* SUMMARY */}
 
-        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
           <div className="rounded-xl border border-slate-200 bg-white p-5">
             <div className="flex justify-between">
               <div>
@@ -464,8 +464,8 @@ function Reports() {
 
         {/* TABLE */}
 
-        <div className="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-white">
-          <div className="flex flex-col gap-4 border-b border-slate-200 p-5 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-6 min-w-0 overflow-hidden rounded-xl border border-slate-200 bg-white">
+          <div className="flex flex-col gap-4 border-b border-slate-200 p-4 sm:p-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="relative w-full lg:max-w-sm">
               <Search
                 size={18}
@@ -545,8 +545,8 @@ function Reports() {
             </div>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
+          <div className="max-w-full overflow-x-auto">
+            <table className="w-full min-w-[860px]">
               <thead className="bg-slate-50">
                 <tr>
                   <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">

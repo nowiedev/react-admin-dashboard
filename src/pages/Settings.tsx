@@ -63,7 +63,7 @@ function Settings() {
   }
 
   return (
-    <div>
+    <div className="min-w-0">
       {/* HEADER */}
 
       <div>
@@ -77,17 +77,17 @@ function Settings() {
         </p>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-3">
+      <div className="mt-6 grid min-w-0 grid-cols-1 gap-5 sm:mt-8 sm:gap-6 xl:grid-cols-3">
         {/* LEFT COLUMN */}
 
-        <div className="space-y-6 xl:col-span-2">
+        <div className="min-w-0 space-y-5 sm:space-y-6 xl:col-span-2">
           {/* PROFILE SETTINGS */}
 
           <form
             onSubmit={handleProfileSubmit}
             className="rounded-xl border border-slate-200 bg-white"
           >
-            <div className="flex items-center gap-3 border-b border-slate-200 px-6 py-5">
+            <div className="flex items-center gap-3 border-b border-slate-200 px-4 py-4 sm:px-6 sm:py-5">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
                 <User size={20} />
               </div>
@@ -103,7 +103,7 @@ function Settings() {
               </div>
             </div>
 
-            <div className="space-y-5 p-6">
+            <div className="space-y-5 p-4 sm:p-6">
               <div className="flex items-center gap-4">
                 <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-blue-100 text-lg font-bold text-blue-600">
                   NJ
@@ -182,7 +182,7 @@ function Settings() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between border-t border-slate-200 px-6 py-4">
+            <div className="flex flex-col gap-3 border-t border-slate-200 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
               <div>
                 {profileSaved && (
                   <p className="flex items-center gap-1.5 text-sm font-medium text-emerald-600">
@@ -194,7 +194,7 @@ function Settings() {
 
               <button
                 type="submit"
-                className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 sm:w-auto"
               >
                 <Save size={17} />
                 Save Profile
@@ -208,7 +208,7 @@ function Settings() {
             onSubmit={handleApplicationSubmit}
             className="rounded-xl border border-slate-200 bg-white"
           >
-            <div className="flex items-center gap-3 border-b border-slate-200 px-6 py-5">
+            <div className="flex items-center gap-3 border-b border-slate-200 px-4 py-4 sm:px-6 sm:py-5">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-50 text-violet-600">
                 <SettingsIcon size={20} />
               </div>
@@ -224,7 +224,7 @@ function Settings() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-5 p-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-5 p-4 sm:p-6 md:grid-cols-2">
               <div className="md:col-span-2">
                 <label
                   htmlFor="app-name"
@@ -314,7 +314,7 @@ function Settings() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between border-t border-slate-200 px-6 py-4">
+            <div className="flex flex-col gap-3 border-t border-slate-200 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
               <div>
                 {applicationSaved && (
                   <p className="flex items-center gap-1.5 text-sm font-medium text-emerald-600">
@@ -326,7 +326,7 @@ function Settings() {
 
               <button
                 type="submit"
-                className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 sm:w-auto"
               >
                 <Save size={17} />
                 Save Settings
@@ -337,11 +337,11 @@ function Settings() {
 
         {/* RIGHT COLUMN */}
 
-        <div className="space-y-6">
+        <div className="min-w-0 space-y-5 sm:space-y-6">
           {/* NOTIFICATIONS */}
 
           <div className="rounded-xl border border-slate-200 bg-white">
-            <div className="flex items-center gap-3 border-b border-slate-200 px-6 py-5">
+            <div className="flex items-center gap-3 border-b border-slate-200 px-4 py-4 sm:px-6 sm:py-5">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-50 text-amber-600">
                 <Bell size={20} />
               </div>
@@ -390,7 +390,7 @@ function Settings() {
 
           {/* SYSTEM INFO */}
 
-          <div className="rounded-xl border border-slate-200 bg-white p-6">
+          <div className="rounded-xl border border-slate-200 bg-white p-4 sm:p-6">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
                 <Globe2 size={20} />
@@ -449,7 +449,7 @@ function NotificationToggle({
   onChange,
 }: NotificationToggleProps) {
   return (
-    <div className="flex items-center justify-between gap-4 p-5">
+    <div className="flex items-center justify-between gap-4 p-4 sm:p-5">
       <div>
         <p className="text-sm font-semibold text-slate-700">
           {title}

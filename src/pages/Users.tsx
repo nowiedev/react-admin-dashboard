@@ -394,7 +394,7 @@ function Users() {
 
       {/* TABLE CARD */}
 
-      <div className="mt-8 overflow-visible rounded-xl border border-slate-200 bg-white">
+      <div className="mt-6 min-w-0 overflow-visible rounded-xl border border-slate-200 bg-white sm:mt-8">
         {/* FILTERS */}
 
         <div className="flex flex-col gap-3 p-4 sm:p-5 lg:flex-row lg:items-center lg:justify-between">
@@ -448,9 +448,9 @@ function Users() {
 
         {/* TABLE */}
 
-        {/* <div className="overflow-x-auto overflow-y-visible"> */}
-        <div className="overflow-x-auto">
-          <table className="w-full">
+        <div className="max-w-full overflow-x-auto overflow-y-visible">
+        {/* <div className="overflow-x-auto"> */}
+          <table className="w-full min-w-[760px]">
             <thead className="bg-slate-50">
               <tr>
                 <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
