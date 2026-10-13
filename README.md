@@ -3,6 +3,16 @@
 
 A modern, responsive admin dashboard built with React, TypeScript, Vite, and Tailwind CSS.
 
+
+## Live Demo
+
+**[View Live Dashboard](https://react-admin-dashboard-three-psi.vercel.app/)**
+
+Explore the dashboard's responsive layout, analytics, user management, product inventory, reports, and settings.
+
+> This is a frontend portfolio demonstration using sample data. Changes are not permanently saved.
+
+
 This project showcases frontend development skills through dashboard interfaces, data visualization, user management, product inventory, reports, and application settings.
 
 ## Features
