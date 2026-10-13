@@ -1,75 +1,89 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# NowieDev Admin Dashboard
 
-Currently, two official plugins are available:
+A modern, responsive admin dashboard built with React, TypeScript, Vite, and Tailwind CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project showcases frontend development skills through dashboard interfaces, data visualization, user management, product inventory, reports, and application settings.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dashboard:** KPI cards, charts, and recent activity.
+- **Analytics:** Business metrics and interactive charts.
+- **Users:** Add, edit, delete, search, filter, and paginate user records.
+- **Products:** Product management, inventory tracking, pricing, and stock status.
+- **Reports:** Transaction records, search and filters, CSV export, and printable reports.
+- **Settings:** Profile settings, application preferences, and notification controls.
+- **Responsive Design:** Supports desktop, tablet, and mobile layouts.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Recharts
+- Lucide React
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js
+- npm
 
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/nowiedev/react-admin-dashboard.git
+cd react-admin-dashboard
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
 ```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+### Production Build
+
+```bash
+npm run lint
+npm run build
+npm run preview
+```
+
+## Screenshots
+
+Screenshots will be added soon.
+
+## Project Status
+
+This is a frontend portfolio project using demonstration data.
+
+User and product operations use React state and are not permanently stored. Settings are also demonstration-only.
+
+Backend authentication, database integration, and live business data are not included in this version.
+
+## Future Improvements
+
+- Backend API and database integration
+- User authentication and role-based access
+- Persistent data storage
+- Global search functionality
+- Real-time notifications
+- Additional analytics and reporting
+
+## Author
+
+**NowieDev**
+
+GitHub: https://github.com/nowiedev
