@@ -24,15 +24,27 @@ const pageTitles: Record<string, string> = {
 }
 
 function Header({ onMenuClick }: HeaderProps) {
-  const [profileOpen, setProfileOpen] = useState(false)
+const [profileMenu, setProfileMenu] = useState({
+  open: false,
+  pathname: '',
+})
+
   const profileRef = useRef<HTMLDivElement>(null)
   const location = useLocation()
 
+  const profileOpen =
+    profileMenu.open &&
+    profileMenu.pathname === location.pathname
+
+  const closeProfileMenu = () => {
+    setProfileMenu({
+      open: false,
+      pathname: location.pathname,
+    })
+  }
+
   const pageTitle = pageTitles[location.pathname] ?? 'Dashboard'
 
-  useEffect(() => {
-    setProfileOpen(false)
-  }, [location.pathname])
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -40,13 +52,19 @@ function Header({ onMenuClick }: HeaderProps) {
         profileRef.current &&
         !profileRef.current.contains(event.target as Node)
       ) {
-        setProfileOpen(false)
+        setProfileMenu((current) => ({
+          ...current,
+          open: false,
+        }))
       }
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setProfileOpen(false)
+        setProfileMenu((current) => ({
+          ...current,
+          open: false,
+        }))
       }
     }
 
@@ -115,7 +133,15 @@ function Header({ onMenuClick }: HeaderProps) {
           <div ref={profileRef} className="relative">
             <button
               type="button"
-              onClick={() => setProfileOpen((current) => !current)}
+              onClick={() =>
+                setProfileMenu((current) => ({
+                  open:
+                    current.pathname === location.pathname
+                      ? !current.open
+                      : true,
+                  pathname: location.pathname,
+                }))
+              }
               aria-expanded={profileOpen}
               aria-haspopup="menu"
               aria-label="Open profile menu"
@@ -162,7 +188,7 @@ function Header({ onMenuClick }: HeaderProps) {
                 <Link
                   to="/settings"
                   role="menuitem"
-                  onClick={() => setProfileOpen(false)}
+                  onClick={closeProfileMenu}
                   className="mt-2 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   <UserRound size={17} />
@@ -172,7 +198,7 @@ function Header({ onMenuClick }: HeaderProps) {
                 <Link
                   to="/settings"
                   role="menuitem"
-                  onClick={() => setProfileOpen(false)}
+                  onClick={closeProfileMenu}
                   className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   <Settings size={17} />
