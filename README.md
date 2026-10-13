@@ -61,9 +61,30 @@ npm run build
 npm run preview
 ```
 
+
 ## Screenshots
 
-Screenshots will be added soon.
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Analytics
+![Analytics](screenshots/analytics.png)
+
+### User Management
+![Users](screenshots/users.png)
+
+### Product Management
+![Products](screenshots/products.png)
+
+### Reports
+![Reports](screenshots/reports.png)
+
+### Settings
+![Settings](screenshots/settings.png)
+
+### Mobile View
+![Mobile Dashboard](screenshots/mobile.png)
+
 
 ## Project Status
 
