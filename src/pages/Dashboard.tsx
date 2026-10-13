@@ -1,8 +1,9 @@
 import {
-  DollarSign,
+  PhilippinePeso,
   ShoppingCart,
   TrendingUp,
   Users,
+  CalendarDays,
 } from 'lucide-react'
 
 import StatCard from '../components/dashboard/StatCard'
@@ -12,75 +13,77 @@ import RecentActivity from '../components/dashboard/RecentActivity'
 const stats = [
   {
     title: 'Total Revenue',
-    value: '$48,295',
+    value: '₱48,295',
     change: 12.5,
-    description: 'vs last month',
-    icon: DollarSign,
+    description: 'vs previous period',
+    icon:  PhilippinePeso,
+    tone: 'blue' as const,
   },
   {
     title: 'Total Users',
     value: '12,849',
     change: 8.2,
-    description: 'vs last month',
+    description: 'vs previous period',
     icon: Users,
+    tone: 'violet' as const,
   },
   {
     title: 'Total Orders',
     value: '3,241',
     change: 5.7,
-    description: 'vs last month',
+    description: 'vs previous period',
     icon: ShoppingCart,
+    tone: 'amber' as const,
   },
   {
     title: 'Conversion Rate',
     value: '3.24%',
     change: -1.2,
-    description: 'vs last month',
+    description: 'vs previous period',
     icon: TrendingUp,
+    tone: 'emerald' as const,
   },
 ]
 
 function Dashboard() {
   return (
-    <div className="min-w-0">
+    <main className="min-w-0 space-y-6 pb-4 sm:space-y-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="min-w-0">
-          <h1 className="text-xl font-bold text-slate-900 sm:text-2xl">
+          <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+            Overview
+          </div>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Dashboard
           </h1>
-
-          <p className="mt-1 text-sm text-slate-500">
-            Welcome back, Nowie. Here's what's happening today.
+          <p className="mt-1.5 text-sm leading-6 text-slate-500">
+            Welcome back. Here's a snapshot of your business performance.
           </p>
         </div>
 
-        <select className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-600 outline-none focus:border-blue-500 sm:w-auto">
-          <option>Last 30 days</option>
-          <option>Last 7 days</option>
-          <option>Last 90 days</option>
-          <option>This year</option>
-        </select>
+        <div className="inline-flex w-full items-center justify-center gap-2 self-start rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 shadow-sm sm:w-auto">
+          <CalendarDays size={17} className="text-slate-400" aria-hidden="true" />
+          Demo reporting overview
+        </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
+      <section aria-label="Key performance indicators" className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
         {stats.map((stat) => (
-          <StatCard
-            key={stat.title}
-            {...stat}
-          />
+          <StatCard key={stat.title} {...stat} />
         ))}
-      </div>
+      </section>
 
-      <div className="mt-6 grid min-w-0 grid-cols-1 gap-6 xl:grid-cols-3">
+      <section aria-label="Revenue and recent activity" className="grid min-w-0 grid-cols-1 gap-5 xl:grid-cols-3">
         <div className="min-w-0 xl:col-span-2">
           <RevenueChart />
         </div>
-
         <div className="min-w-0">
           <RecentActivity />
         </div>
-      </div>
-    </div>
+      </section>
+      <p className="text-xs text-slate-400">Demo dashboard: figures are illustrative and are not linked to live transactions.</p>
+    </main>
   )
 }
 

@@ -1,92 +1,186 @@
+
+import { useEffect, useRef, useState } from 'react'
 import {
   Bell,
   ChevronDown,
   Menu,
   Search,
+  Settings,
+  UserRound,
 } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
 
 interface HeaderProps {
   onMenuClick: () => void
 }
 
-function Header({
-  onMenuClick,
-}: HeaderProps) {
+const pageTitles: Record<string, string> = {
+  '/dashboard': 'Dashboard',
+  '/users': 'Users',
+  '/products': 'Products',
+  '/analytics': 'Analytics',
+  '/reports': 'Reports',
+  '/settings': 'Settings',
+}
+
+function Header({ onMenuClick }: HeaderProps) {
+  const [profileOpen, setProfileOpen] = useState(false)
+  const profileRef = useRef<HTMLDivElement>(null)
+  const location = useLocation()
+
+  const pageTitle = pageTitles[location.pathname] ?? 'Dashboard'
+
+  useEffect(() => {
+    setProfileOpen(false)
+  }, [location.pathname])
+
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target as Node)
+      ) {
+        setProfileOpen(false)
+      }
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setProfileOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
+
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center border-b border-slate-200 bg-white px-4 sm:h-20 sm:px-6 lg:px-8">
-      <div className="flex w-full items-center justify-between gap-3">
-        {/* MOBILE MENU */}
-
-        <button
-          type="button"
-          onClick={onMenuClick}
-          aria-label="Open navigation"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-slate-600 transition hover:bg-slate-100 lg:hidden"
-        >
-          <Menu size={22} />
-        </button>
-
-        {/* SEARCH */}
-
-        <div className="relative hidden w-full max-w-md sm:block">
-          <Search
-            size={18}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-          />
-
-          <input
-            type="text"
-            placeholder="Search anything..."
-            className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
-          />
-        </div>
-
-        {/* MOBILE BRAND */}
-
-        <div className="min-w-0 flex-1 sm:hidden">
-          <p className="truncate text-base font-bold text-slate-900">
-            NowieDev
-          </p>
-        </div>
-
-        {/* RIGHT */}
-
-        <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+    <header className="sticky top-0 z-30 flex h-16 items-center border-b border-slate-200 bg-white/95 px-4 backdrop-blur-md sm:h-20 sm:px-6 lg:px-8">
+      <div className="flex w-full min-w-0 items-center justify-between gap-3">
+        <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-5">
           <button
             type="button"
-            aria-label="Notifications"
-            className="relative flex h-10 w-10 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
+            onClick={onMenuClick}
+            aria-label="Open navigation"
+            aria-controls="app-sidebar"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-slate-600 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 lg:hidden"
+          >
+            <Menu size={22} />
+          </button>
+
+          <div className="min-w-0 sm:hidden">
+            <p className="truncate text-sm font-bold text-slate-900">
+              NowieDev
+            </p>
+            <p className="truncate text-xs text-slate-500">
+              {pageTitle}
+            </p>
+          </div>
+
+          <div className="hidden min-w-0 max-w-md flex-1 sm:block">
+            <div className="relative">
+              <Search
+                size={18}
+                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+              />
+              <input
+                type="text"
+                disabled
+                aria-label="Global search coming soon"
+                placeholder="Global search coming soon..."
+                className="w-full cursor-not-allowed rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-11 pr-4 text-sm text-slate-400"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <button
+            type="button"
+            disabled
+            title="Notifications coming soon"
+            aria-label="Notifications coming soon"
+            className="flex h-10 w-10 cursor-not-allowed items-center justify-center rounded-xl text-slate-400"
           >
             <Bell size={20} />
-
-            <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" />
           </button>
 
           <div className="hidden h-8 w-px bg-slate-200 sm:block" />
 
-          <button
-            type="button"
-            className="flex items-center gap-3 rounded-lg p-1.5 transition hover:bg-slate-50"
-          >
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-blue-600 sm:h-10 sm:w-10">
-              NJ
-            </div>
+          <div ref={profileRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setProfileOpen((current) => !current)}
+              aria-expanded={profileOpen}
+              aria-haspopup="menu"
+              aria-label="Open profile menu"
+              className={`flex items-center gap-2 rounded-xl p-1.5 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:gap-3 ${
+                profileOpen ? 'bg-blue-50' : 'hover:bg-slate-50'
+              }`}
+            >
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 text-sm font-bold text-blue-700 ring-2 ring-white sm:h-10 sm:w-10">
+                NJ
+              </div>
 
-            <div className="hidden text-left md:block">
-              <p className="text-sm font-semibold text-slate-800">
-                Nowie John
-              </p>
+              <div className="hidden text-left md:block">
+                <p className="text-sm font-semibold text-slate-800">
+                  Nowie John
+                </p>
+                <p className="text-xs text-slate-500">
+                  Administrator
+                </p>
+              </div>
 
-              <p className="text-xs text-slate-500">
-                Administrator
-              </p>
-            </div>
+              <ChevronDown
+                size={16}
+                className={`hidden text-slate-400 transition-transform md:block ${
+                  profileOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
 
-            <ChevronDown
-              size={16}
-              className="hidden text-slate-400 md:block"
-            />
-          </button>
+            {profileOpen && (
+              <div
+                role="menu"
+                aria-label="Profile menu"
+                className="absolute right-0 top-full z-50 mt-3 w-60 max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-200 bg-white p-2 shadow-xl shadow-slate-200/60"
+              >
+                <div className="border-b border-slate-100 px-3 py-3">
+                  <p className="text-sm font-semibold text-slate-900">
+                    Nowie John
+                  </p>
+                  <p className="mt-0.5 text-xs text-slate-500">
+                    admin@nowiedev.com
+                  </p>
+                </div>
+
+                <Link
+                  to="/settings"
+                  role="menuitem"
+                  onClick={() => setProfileOpen(false)}
+                  className="mt-2 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                >
+                  <UserRound size={17} />
+                  My Profile
+                </Link>
+
+                <Link
+                  to="/settings"
+                  role="menuitem"
+                  onClick={() => setProfileOpen(false)}
+                  className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                >
+                  <Settings size={17} />
+                  Account Settings
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>

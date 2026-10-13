@@ -8,6 +8,9 @@ import {
   ChevronLeft,
   ChevronRight,
   MoreHorizontal,
+  Pencil,
+  Trash2,
+  UserRoundX,
   Plus,
   Search,
   X,
@@ -372,7 +375,7 @@ function Users() {
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
             Users
           </h1>
 
@@ -384,7 +387,7 @@ function Users() {
         <button
           type="button"
           onClick={() => setIsAddModalOpen(true)}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 sm:w-auto"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-200 transition hover:bg-blue-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 sm:w-auto"
         >
           <Plus size={18} />
 
@@ -394,7 +397,7 @@ function Users() {
 
       {/* TABLE CARD */}
 
-      <div className="mt-6 min-w-0 overflow-visible rounded-xl border border-slate-200 bg-white sm:mt-8">
+      <div className="mt-6 min-w-0 overflow-visible rounded-2xl border border-slate-200 bg-white shadow-sm sm:mt-8">
         {/* FILTERS */}
 
         <div className="flex flex-col gap-3 p-4 sm:p-5 lg:flex-row lg:items-center lg:justify-between">
@@ -448,8 +451,7 @@ function Users() {
 
         {/* TABLE */}
 
-        <div className="max-w-full overflow-x-auto overflow-y-visible">
-        {/* <div className="overflow-x-auto"> */}
+        <div className="max-w-full overflow-x-auto">
           <table className="w-full min-w-[760px]">
             <thead className="bg-slate-50">
               <tr>
@@ -479,13 +481,13 @@ function Users() {
               {paginatedUsers.map((user) => (
                 <tr
                   key={user.id}
-                  className="transition hover:bg-slate-50"
+                  className="transition-colors hover:bg-blue-50/40"
                 >
                   {/* USER */}
 
                   <td className="whitespace-nowrap px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-blue-600">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 text-sm font-bold text-blue-700">
                         {user.initials}
                       </div>
 
@@ -548,7 +550,7 @@ function Users() {
                               : user.id,
                           )
                         }
-                        className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+                        className="rounded-lg p-2 text-slate-400 transition hover:bg-blue-50 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                         aria-label={`Actions for ${user.name}`}
                       >
                         <MoreHorizontal size={19} />
@@ -565,9 +567,9 @@ function Users() {
 
                               setOpenMenuId(null)
                             }}
-                            className="block w-full px-4 py-2.5 text-left text-sm text-slate-600 transition hover:bg-slate-50"
+                            className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-slate-600 transition hover:bg-blue-50 hover:text-blue-700"
                           >
-                            Edit User
+                            <Pencil size={15} /> Edit User
                           </button>
 
                           <button
@@ -576,9 +578,9 @@ function Users() {
                               setDeletingUser(user)
                               setOpenMenuId(null)
                             }}
-                            className="block w-full px-4 py-2.5 text-left text-sm font-medium text-red-600 transition hover:bg-red-50"
+                            className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-red-600 transition hover:bg-red-50"
                           >
-                            Delete User
+                            <Trash2 size={15} /> Delete User
                           </button>
                         </div>
                       )}
@@ -591,9 +593,10 @@ function Users() {
                 <tr>
                   <td
                     colSpan={5}
-                    className="px-6 py-12 text-center"
+                    className="px-6 py-14 text-center"
                   >
-                    <p className="font-medium text-slate-600">
+                    <UserRoundX size={30} className="mx-auto mb-3 text-slate-300" />
+                    <p className="font-semibold text-slate-700">
                       No users found
                     </p>
 
@@ -609,7 +612,7 @@ function Users() {
 
         {/* PAGINATION */}
 
-        <div className="flex flex-col gap-4 border-t border-slate-200 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 border-t border-slate-200 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p className="text-sm text-slate-500">
             Showing{' '}
             <span className="font-medium text-slate-700">
@@ -684,9 +687,9 @@ function Users() {
       {/* ============================= */}
 
       {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4">
-          <div className="w-full max-w-lg rounded-2xl bg-white shadow-xl">
-            <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-900/50 p-3 backdrop-blur-[2px] sm:p-4">
+          <div className="my-auto max-h-[calc(100dvh-1.5rem)] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl sm:max-h-[calc(100dvh-2rem)]">
+            <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 sm:px-6 sm:py-5">
               <div>
                 <h2 className="text-lg font-semibold text-slate-900">
                   Add New User
@@ -700,14 +703,14 @@ function Users() {
               <button
                 type="button"
                 onClick={closeAddModal}
-                className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+                className="rounded-lg p-2 text-slate-400 transition hover:bg-blue-50 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 <X size={20} />
               </button>
             </div>
 
             <form onSubmit={handleAddUser}>
-              <div className="space-y-5 p-6">
+              <div className="space-y-5 p-4 sm:p-6">
                 <div>
                   <label
                     htmlFor="add-name"
@@ -827,18 +830,18 @@ function Users() {
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 border-t border-slate-200 px-6 py-4">
+              <div className="flex flex-col-reverse gap-3 border-t border-slate-200 px-4 py-4 sm:flex-row sm:justify-end sm:px-6">
                 <button
                   type="button"
                   onClick={closeAddModal}
-                  className="rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
+                  className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   Cancel
                 </button>
 
                 <button
                   type="submit"
-                  className="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+                  className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   Add User
                 </button>
@@ -853,9 +856,9 @@ function Users() {
       {/* ============================= */}
 
       {editingUser && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4">
-          <div className="w-full max-w-lg rounded-xl bg-white p-5 shadow-xl sm:p-6">
-            <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-900/50 p-3 backdrop-blur-[2px] sm:p-4">
+          <div className="my-auto max-h-[calc(100dvh-1.5rem)] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl sm:max-h-[calc(100dvh-2rem)]">
+            <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 sm:px-6 sm:py-5">
               <div>
                 <h2 className="text-lg font-semibold text-slate-900">
                   Edit User
@@ -872,14 +875,14 @@ function Users() {
                 onClick={() =>
                   setEditingUser(null)
                 }
-                className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+                className="rounded-lg p-2 text-slate-400 transition hover:bg-blue-50 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 <X size={20} />
               </button>
             </div>
 
             <form onSubmit={handleEditUser}>
-              <div className="space-y-5 p-6">
+              <div className="space-y-5 p-4 sm:p-6">
                 <div>
                   <label
                     htmlFor="edit-name"
@@ -997,20 +1000,20 @@ function Users() {
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 border-t border-slate-200 px-6 py-4">
+              <div className="flex flex-col-reverse gap-3 border-t border-slate-200 px-4 py-4 sm:flex-row sm:justify-end sm:px-6">
                 <button
                   type="button"
                   onClick={() =>
                     setEditingUser(null)
                   }
-                  className="rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
+                  className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   Cancel
                 </button>
 
                 <button
                   type="submit"
-                  className="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+                  className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   Save Changes
                 </button>
@@ -1025,8 +1028,8 @@ function Users() {
       {/* ============================= */}
 
       {deletingUser && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/50 p-4">
-          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-slate-900/50 p-3 backdrop-blur-[2px] sm:p-4">
+          <div className="my-auto max-h-[calc(100dvh-1.5rem)] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-5 shadow-2xl sm:p-6">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-50 text-red-600">
               <span className="text-xl font-bold">
                 !
@@ -1051,7 +1054,7 @@ function Users() {
                 onClick={() =>
                   setDeletingUser(null)
                 }
-                className="rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
+                className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 Cancel
               </button>
